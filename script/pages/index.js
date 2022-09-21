@@ -1,8 +1,22 @@
 import {recipes} from "../../data/recipes.js";
+import {recetteFactory} from "../factories/recettes.js";
+
+var data;
 
 async function getData(){
-    let data = recipes;
-    console.log(data);
+    data = recipes;
+}
+
+async function displayRecettes(){
+    const recettesSection = document.querySelector(".recettes");
+
+    data.forEach(recette => {
+        const recettesModel = recetteFactory(recette);
+        const recetteCarte = recettesModel.getRecetteCardDOM();
+        recettesSection.appendChild(recetteCarte);
+    });
 }
 
 getData();
+console.log(data);
+displayRecettes();
