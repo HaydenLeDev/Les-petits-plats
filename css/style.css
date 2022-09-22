@@ -28,4 +28,5 @@ header{
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 50px;
+    justify-items: center;
 }

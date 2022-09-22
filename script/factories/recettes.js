@@ -12,6 +12,7 @@ function recetteFactory(recette){
         const titre = document.createElement("h2");
         const descript = document.createElement("p");
         const min = document.createElement("p");
+        const ingredientListe = document.createElement("div");
 
         card.classList.add("card");
         image.classList.add("card-image");
@@ -19,16 +20,19 @@ function recetteFactory(recette){
         infoCardPrincipal.classList.add("card-info-principal");
         titre.classList.add("card-info-titre");
         min.classList.add("card-info-min");
+        ingredientListe.classList.add("card-info-ingredients");
         descript.classList.add("card-info-description");
 
         titre.textContent = name;
         min.textContent = time + " min";
+        ingredientListe = getIngredientsElement();
         descript.textContent = description;
 
         infoCardPrincipal.appendChild(titre);
         infoCardPrincipal.appendChild(min);
 
-        infoCardSecondaire.appendChild(descript)
+        infoCardSecondaire.appendChild(ingredientListe);
+        infoCardSecondaire.appendChild(descript);
 
         infoCard.appendChild(infoCardPrincipal);
         infoCard.appendChild(infoCardSecondaire);
@@ -37,6 +41,25 @@ function recetteFactory(recette){
         card.appendChild(infoCard);
 
         return card;
+    }
+    
+    function getIngredientsElement(){
+        const ingredientList = document.createElement("div");
+        ingredients.forEach(i => {
+            const ingredientItem = document.createElement("div");
+            const ingredientName = document.createElement("p");
+            const nombre = document.createElement("p");
+
+            ingredientName.textContent = i.ingredient;
+            nombre.textContent = i.quantity + " " + i.unit;
+            console.log(nombre);    
+            ingredientItem.appendChild(ingredientName);
+            ingredientItem.appendChild(nombre);
+            ingredientList.appendChild(ingredientItem);
+            
+        });
+        return ingredientList;
+
     }
 
     return{getRecetteCardDOM}
