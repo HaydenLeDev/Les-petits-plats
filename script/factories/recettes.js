@@ -18,6 +18,7 @@ function recetteFactory(recette){
         image.classList.add("card-image");
         infoCard.classList.add("card-info");
         infoCardPrincipal.classList.add("card-info-principal");
+        infoCardSecondaire.classList.add("card-info-secondaire");
         titre.classList.add("card-info-titre");
         min.classList.add("card-info-min");
         ingredientListe.classList.add("card-info-ingredients");
@@ -25,7 +26,32 @@ function recetteFactory(recette){
 
         titre.textContent = name;
         min.textContent = time + " min";
-        ingredientListe = getIngredientsElement();
+
+        ingredients.forEach(i => {
+            const ingredientItem = document.createElement("div");
+            const ingredientName = document.createElement("p");
+            const nombre = document.createElement("p");
+            ingredientItem.classList.add("card-info-secondaire-ingredients");
+            ingredientName.classList.add("card-info-secondaire-ingredients-name");
+            nombre.classList.add("card-info-secondaire-ingredients-nombre");
+            ingredientName.textContent = i.ingredient;
+            if (i.quantity === undefined){
+                nombre.textContent = "";
+            } else if (i.unit === undefined){
+                nombre.textContent = ": " + i.quantity;
+            } else {
+                nombre.textContent = ": " + i.quantity + " " + i.unit;
+            }
+
+            console.log(ingredientItem);    
+            ingredientItem.appendChild(ingredientName);
+            ingredientItem.appendChild(nombre);
+            ingredientListe.appendChild(ingredientItem);
+            
+        });
+
+
+
         descript.textContent = description;
 
         infoCardPrincipal.appendChild(titre);
@@ -41,25 +67,6 @@ function recetteFactory(recette){
         card.appendChild(infoCard);
 
         return card;
-    }
-    
-    function getIngredientsElement(){
-        const ingredientList = document.createElement("div");
-        ingredients.forEach(i => {
-            const ingredientItem = document.createElement("div");
-            const ingredientName = document.createElement("p");
-            const nombre = document.createElement("p");
-
-            ingredientName.textContent = i.ingredient;
-            nombre.textContent = i.quantity + " " + i.unit;
-            console.log(nombre);    
-            ingredientItem.appendChild(ingredientName);
-            ingredientItem.appendChild(nombre);
-            ingredientList.appendChild(ingredientItem);
-            
-        });
-        return ingredientList;
-
     }
 
     return{getRecetteCardDOM}

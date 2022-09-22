@@ -14,7 +14,8 @@
 .card-info{
     display: flex;
     flex-direction: column;
-    padding: 0px 20px 0px 20px;
+    padding: 20px 20px 0px 20px;
+    gap: 20px;
 }
 
 .card-info-principal{
@@ -26,11 +27,36 @@
 
 .card-info-description{
     width: 171px;
-    height: 109px;
+    height: 103px;
     overflow: hidden;
     font-size: 12px;
+    padding-left: 10px;
+    margin-bottom: 15px;
+    text-overflow: ellipsis;
 }
 
 .card-info-titre{
     font-size: 18px;
+}
+
+.card-info-secondaire{
+    display: flex;
+}
+
+
+.card-info-secondaire-ingredients{
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-right: 10px;
+}
+
+.card-info-secondaire-ingredients-name{
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.card-info-secondaire-ingredients-nombre{
+    font-weight: 400;
+    font-size: 12px;
 }
