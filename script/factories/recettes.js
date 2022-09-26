@@ -42,8 +42,7 @@ function recetteFactory(recette){
             } else {
                 nombre.textContent = ": " + i.quantity + " " + i.unit;
             }
-
-            console.log(ingredientItem);    
+ 
             ingredientItem.appendChild(ingredientName);
             ingredientItem.appendChild(nombre);
             ingredientListe.appendChild(ingredientItem);

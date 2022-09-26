@@ -1,27 +1,62 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <title>Les petits plat</title>
 </head>
+
 <body>
     <header>
-        <img src="/assets/logo.png" alt="Logo">
+        <img src="/assets/logo.png" alt="Logo" class="logo">
     </header>
     <main>
         <section class="filtres">
-            <div class="filtre1"></div>
-            <div class="autreFiltre"></div>
+            <div class="filtre_titre">
+                <input type="text" name="filtre_titre_input" id="filtre_titre_input">
+            </div>
+            <div class="filtre_autre">
+                <div class="filtre_secondaire" id="filtre_secondaire_ingredients">
+                    <div class="filtre_secondaire_input">
+                        <input type="text" name="filtre_ingredients_input" id="filtre_ingredients_input"
+                            class="input_secondaire" placeholder="Ingredients">
+                        <span class="fleche"></span>
+                    </div>
+                    <div class="filtre_secondaire_composants" id="filtre_secondaire_composants_ingredient"></div>
+                </div>
+                <div class="filtre_secondaire">
+                    <div class="filtre_secondaire_input">
+                        <input type="text" name="filtre_appareils_input" id="filtre_appareils_input"
+                            class="input_secondaire" placeholder="Appareils">
+                        <span class="fleche"></span>
+                        <div class="filtre_secondaire_composants"></div>
+                    </div>
+                </div>
+                <div class="filtre_secondaire">
+                    <div class="filtre_secondaire_input">
+                        <input type="text" name="filtre_ustensiles_input" id="filtre_ustensiles_input"
+                            class="input_secondaire" placeholder="Ustensiles">
+                        <span class="fleche"></span>
+                        <div class="filtre_secondaire_composants"></div>
+                    </div>
+                </div>
+            </div>
         </section>
-        <section class="recettes"></section>
+        <section id="liste_recette" class="recettes"></section>
+        <div id="recette_null">
+            <p> « Aucune recette ne correspond à votre critère… vous pouvez
+                chercher « tarte aux pommes », « poisson », etc.
+            </p>
+        </div>
     </main>
 </body>
 <script type="module" src="script/pages/index.js"></script>
+
 </html>

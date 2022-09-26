@@ -1,5 +1,5 @@
 @import url("carteRecette.css");
-
+@import url("filtre.css");
 :root{
     --blue : #3282F7;
     --green : #68D9A4;
@@ -20,8 +20,14 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 42px;
+    padding-bottom: 17px;
 }
 
+.logo{
+    width: 268px;
+    height: 93px;
+}
 
 .recettes{
     display: grid;
@@ -29,4 +35,5 @@ header{
     grid-column-gap: 0px;
     grid-row-gap: 50px;
     justify-items: center;
+    margin-top: 30px;
 }

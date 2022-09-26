@@ -1,0 +1,104 @@
+.filtres{
+    display: flex;
+    flex-direction: column;
+    gap: 77px;
+}
+
+.filtre_titre{
+    width: calc(100% - 200px);
+    height: 69px;
+    padding: 0px 100px 0px 100px;
+}
+
+#filtre_titre_input{
+    width: 100%;
+    height: 100%;
+    background-color: var(--grey);
+    border-radius: 5px;
+}
+
+.filtre_autre{
+    display: flex;
+    margin-left: 100px;
+    gap: 20px;
+}
+
+.filtre_secondaire{
+    width: 170px;
+}
+
+.filtre_secondaire_actif{
+    width: 170px;
+}
+
+.filtre_secondaire_input{
+    width: 100%;
+    height: 70px;
+    border-radius: 5px;
+    border: none;
+    display: flex;
+}
+
+.input_secondaire{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    border: none;
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 700;
+    padding-left: 15px;
+}
+
+.input_secondaire::placeholder{
+    font-weight: bold;
+    opacity: 1;
+    color: var(--white);
+}
+
+.fleche{
+    position: relative;
+    top: 29px;
+    left: -30px;
+    width: 9px;
+    height: 9px;
+    border: solid var(--white);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.filtre_secondaire_composants{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+}
+
+.element_button_filtre{
+    background-color: transparent;
+    border: none;
+}
+
+#filtre_secondaire_ingredients{
+    background-color: var(--blue);
+    border-radius: 5px;
+}
+
+#filtre_ingredients_input{
+    background-color: var(--blue);
+}
+
+#filtre_appareils_input{
+    background-color: var(--green);
+}
+
+#filtre_ustensiles_input{
+    background-color: var(--orange);
+}
+
+#recette_null{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
