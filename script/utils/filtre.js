@@ -1,15 +1,17 @@
-import { displayRecettes, displayFiltreIngredients, displayFocus } from "../utils/display.js";
+import { displayRecettes, displayFiltreIngredients, displayFocus, noDisplayFocus } from "../utils/display.js";
 export{initFiltre}
 
 
 
 function initFiltre(data){
-
-    
-
+    var tableauIngredients = [];
+    tableauIngredients = tableauIngredientsInits(tableauIngredients, data);
+    document.getElementById("filtre_secondaire_composants_ingredient").innerHTML="";
+    displayFiltreIngredients(tableauIngredients);
     document.getElementById("filtre_titre_input").addEventListener('keyup', rechercheTitre);
     document.getElementById("filtre_ingredients_input").addEventListener('keyup', rechercheFiltre);
-    document.getElementById("filtre_ingredients_input").addEventListener('keyup', displayFocus);
+    document.getElementById("filtre_ingredients_input").addEventListener('focus', displayFocus);
+    document.getElementById("filtre_ingredients_input").addEventListener('blur', noDisplayFocus);
 
     function rechercheTitre(){
         let inputUser = this.value;
@@ -38,9 +40,10 @@ function initFiltre(data){
 
     function rechercheFiltre(){
         let inputUser = this.value;
-        var tableauIngredients = [];
+        
         var result = [];
         tableauIngredients = tableauIngredientsInits(tableauIngredients, data);
+        document.getElementById("filtre_secondaire_composants_ingredient").innerHTML="";
         displayFiltreIngredients(tableauIngredients);
         if(nombreCharMin(inputUser)){
             tableauIngredients.forEach(element => {

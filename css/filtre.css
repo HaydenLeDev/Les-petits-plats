@@ -25,13 +25,15 @@
 
 .filtre_secondaire{
     width: 170px;
+    z-index: 1;
+    transition: 0.4s ease-in-out;
 }
 
 .filtre_secondaire_actif{
     width: 40%;
-    height: 500px;
     overflow: hidden;
 }
+
 
 .filtre_secondaire_input{
     width: 100%;
@@ -52,6 +54,11 @@
     padding-left: 15px;
 }
 
+input:focus {
+    border: none;
+    outline: none;
+}
+
 .input_secondaire::placeholder{
     font-weight: bold;
     opacity: 1;
@@ -61,7 +68,7 @@
 .fleche{
     position: relative;
     top: 29px;
-    left: -30px;
+    left: -20px;
     width: 9px;
     height: 9px;
     border: solid var(--white);
@@ -70,16 +77,17 @@
 }
 
 .filtre_secondaire_composants{
-    display: grid;
+    display: none;
     grid-template-columns: repeat(3, 1fr);
-    justify-items: center;
-    row-gap: 20px;
+    justify-items: flex-start;
+    row-gap: 10px;
+    padding: 0px 19px 16px 19px;
 }
 
 .element_button_filtre{
     background-color: transparent;
     border: none;
-    align-items: flex-start;
+    cursor: pointer;
 }
 
 .element_button_filtre_text{
