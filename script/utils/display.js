@@ -14,14 +14,18 @@ async function displayRecettes(data){
 
 async function displayFiltreIngredients(tab){
     const filtreIngredientsDom = document.querySelector("#filtre_secondaire_composants_ingredient");
-
+    let nbMax = 0;
     tab.forEach(el => {
-        const filtreModel = filtreFactory(el);
-        const filtreElement = filtreModel.getFiltreButtonDOM();
-        filtreIngredientsDom.appendChild(filtreElement);
+        if(nbMax < 30){
+            const filtreModel = filtreFactory(el);
+            const filtreElement = filtreModel.getFiltreButtonDOM();
+            filtreIngredientsDom.appendChild(filtreElement);
+            nbMax++;
+        }
+        
     });
 }
 
 async function displayFocus(){
-    this.style.background = 'red';
+    this.parentElement.parentElement.classList.add("filtre_secondaire_actif");
 }
