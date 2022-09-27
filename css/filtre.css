@@ -15,6 +15,11 @@
     height: 100%;
     background-color: var(--grey);
     border-radius: 5px;
+    border: none;
+    padding-left: 15px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
 }
 
 .filtre_autre{
@@ -101,6 +106,12 @@ input:focus {
     background-color: var(--blue);
     border-radius: 5px;
 }
+
+#filtre_secondaire_appareils{
+    background-color: var(--green);
+    border-radius: 5px;
+}
+
 
 #filtre_ingredients_input{
     background-color: var(--blue);
