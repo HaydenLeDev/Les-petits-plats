@@ -60,9 +60,9 @@ function initFiltre(data) {
     function rechercheFiltreIngredient() {
         let inputUser = this.value;
         var result = [];
-        tableauIngredients = tableauIngredientsInits(tableauIngredients, data);
         document.getElementById("filtre_secondaire_composants_ingredient").innerHTML = "";
         displayFiltreIngredients(tableauIngredients);
+        initEvenementFiltre(tableauIngredients);
         if (nombreCharMin(inputUser)) {
             tableauIngredients.forEach(element => {
                 if (comparaisonString(element, inputUser)) {
@@ -72,6 +72,7 @@ function initFiltre(data) {
             console.log(result);
             document.getElementById("filtre_secondaire_composants_ingredient").innerHTML = "";
             displayFiltreIngredients(result);
+            initEvenementFiltre(result);
         }
     }
 
@@ -127,6 +128,7 @@ function initFiltre(data) {
         noDisplayFocusUstensile(this);
         document.getElementById("filtre_secondaire_composants_ingredient").innerHTML = "";
         displayFiltreIngredients(tableauIngredients);
+        initEvenementFiltre(tableauIngredients);
         console.log(tableauIngredients);
     }
     
