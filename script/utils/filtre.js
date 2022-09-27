@@ -1,5 +1,6 @@
 import { displayRecettes, displayFiltreIngredients, noDisplayFocusIngredient, displayFocusIngredient,
-    noDisplayFocusAppareil, displayFocusAppareil, displayFiltreAppareil } from "../utils/display.js";
+    noDisplayFocusAppareil, displayFocusAppareil, displayFiltreAppareil, displayFocusUstensile,
+    noDisplayFocusUstensile, displayFiltreUstensile } from "../utils/display.js";
 export { initFiltre };
 
 
@@ -23,7 +24,12 @@ function initFiltre(data) {
 
 
     var tableauUstensiles = [];
-    tableauAppareil = tableauUstensilesInit(tableauAppareil, data);
+    tableauUstensiles = tableauUstensilesInit(tableauUstensiles, data);
+    document.getElementById("filtre_secondaire_composants_ustensiles").innerHTML = "";
+    displayFiltreUstensile(tableauUstensiles);
+    document.getElementById("filtre_ustensiles_input").addEventListener('keyup', rechercheFiltreUstensile);
+    document.getElementById("filtre_ustensiles_input").addEventListener('focus', displayFocusUstensile);
+    document.getElementById("filtre_ustensiles_input").addEventListener('blur', noDisplayFocusUstensile);
 
     function rechercheTitre() {
         let inputUser = this.value;
@@ -85,6 +91,24 @@ function initFiltre(data) {
             displayFiltreAppareil(result);
         }
     }
+
+    function rechercheFiltreUstensile() {
+        let inputUser = this.value;
+        var result = [];
+        tableauUstensiles = tableauAppareilsInit(tableauUstensiles, data);
+        document.getElementById("filtre_secondaire_composants_ustensiles").innerHTML = "";
+        displayFiltreUstensile(tableauUstensiles);
+        if (nombreCharMin(inputUser)) {
+            tableauUstensiles.forEach(element => {
+                if (comparaisonString(element, inputUser)) {
+                    result.push(element);
+                }
+            });
+            console.log(result);
+            document.getElementById("filtre_secondaire_composants_ustensiles").innerHTML = "";
+            displayFiltreUstensile(result);
+        }
+    }
 }
 
 
@@ -125,9 +149,8 @@ function tableauAppareilsInit(tab, data) {
 function tableauUstensilesInit(tab, data) {
     data.forEach(element => {
         element.ustensils.forEach(i => {
-            if (tab.indexOf(i.ustensils) === -1) {
-                console.log(i.ustensils);
-                tab.push(i.ustensils);
+            if (tab.indexOf(i) === -1) {
+                tab.push(i);
             }
         });
     });

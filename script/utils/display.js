@@ -1,7 +1,8 @@
 import { recetteFactory } from "../factories/recettes.js";
 import { filtreFactory } from "../factories/filtre.js";
 export { displayRecettes, displayFiltreIngredients, displayFocusIngredient, noDisplayFocusIngredient,
-    displayFocusAppareil, noDisplayFocusAppareil, displayFiltreAppareil};
+    displayFocusAppareil, noDisplayFocusAppareil, displayFiltreAppareil, displayFocusUstensile,
+    noDisplayFocusUstensile, displayFiltreUstensile};
 
 async function displayRecettes(data){
     const recettesSection = document.querySelector(".recettes");
@@ -40,6 +41,20 @@ async function displayFiltreAppareil(tab){
     });
 }
 
+async function displayFiltreUstensile(tab){
+    const filtreUstensilesDom = document.querySelector("#filtre_secondaire_composants_ustensiles");
+    let nbMax = 0;
+    tab.forEach(el => {
+        if(nbMax < 30){
+            const filtreModel = filtreFactory(el);
+            const filtreElement = filtreModel.getFiltreButtonDOM();
+            filtreUstensilesDom.appendChild(filtreElement);
+            nbMax++;
+        }
+        
+    });
+}
+
 async function displayFocusIngredient(){
     this.parentElement.parentElement.classList.add("filtre_secondaire_actif");
     document.getElementById("filtre_secondaire_composants_ingredient").style.display = "grid";
@@ -62,4 +77,16 @@ async function noDisplayFocusAppareil(){
     this.parentElement.parentElement.classList.remove("filtre_secondaire_actif");
     document.getElementById("filtre_secondaire_composants_appareil").style.display = "none";
     document.getElementById("filtre_appareils_input").placeholder = "Appareils";
+}
+
+async function displayFocusUstensile(){
+    this.parentElement.parentElement.classList.add("filtre_secondaire_actif");
+    document.getElementById("filtre_secondaire_composants_ustensiles").style.display = "grid";
+    document.getElementById("filtre_ustensiles_input").placeholder = "Recherche d'un ustensiles";
+}
+
+async function noDisplayFocusUstensile(){
+    this.parentElement.parentElement.classList.remove("filtre_secondaire_actif");
+    document.getElementById("filtre_secondaire_composants_ustensiles").style.display = "none";
+    document.getElementById("filtre_ustensiles_input").placeholder = "Ustensiles";
 }

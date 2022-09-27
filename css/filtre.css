@@ -112,6 +112,10 @@ input:focus {
     border-radius: 5px;
 }
 
+#filtre_secondaire_ustensiles{
+    background-color: var(--orange);
+    border-radius: 5px;
+}
 
 #filtre_ingredients_input{
     background-color: var(--blue);
