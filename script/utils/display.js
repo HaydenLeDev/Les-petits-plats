@@ -2,7 +2,7 @@ import { recetteFactory } from "../factories/recettes.js";
 import { filtreFactory } from "../factories/filtre.js";
 export { displayRecettes, displayFiltreIngredients, displayFocusIngredient, noDisplayFocusIngredient,
     displayFocusAppareil, noDisplayFocusAppareil, displayFiltreAppareil, displayFocusUstensile,
-    noDisplayFocusUstensile, displayFiltreUstensile};
+    noDisplayFocusUstensile, displayFiltreUstensile, displayFiltreActif};
 
 async function displayRecettes(data){
     const recettesSection = document.querySelector(".recettes");
@@ -61,8 +61,8 @@ async function displayFocusIngredient(){
     document.getElementById("filtre_ingredients_input").placeholder = "Recherche un ingrédient";
 }
 
-async function noDisplayFocusIngredient(){
-    this.parentElement.parentElement.classList.remove("filtre_secondaire_actif");
+async function noDisplayFocusIngredient(el){
+    el.parentElement.parentElement.parentElement.classList.remove("filtre_secondaire_actif");
     document.getElementById("filtre_secondaire_composants_ingredient").style.display = "none";
     document.getElementById("filtre_ingredients_input").placeholder = "Ingrédients";
 }
@@ -73,8 +73,8 @@ async function displayFocusAppareil(){
     document.getElementById("filtre_appareils_input").placeholder = "Recherche d'un appareils";
 }
 
-async function noDisplayFocusAppareil(){
-    this.parentElement.parentElement.classList.remove("filtre_secondaire_actif");
+async function noDisplayFocusAppareil(el){
+    el.parentElement.parentElement.classList.remove("filtre_secondaire_actif");
     document.getElementById("filtre_secondaire_composants_appareil").style.display = "none";
     document.getElementById("filtre_appareils_input").placeholder = "Appareils";
 }
@@ -85,8 +85,15 @@ async function displayFocusUstensile(){
     document.getElementById("filtre_ustensiles_input").placeholder = "Recherche d'un ustensiles";
 }
 
-async function noDisplayFocusUstensile(){
-    this.parentElement.parentElement.classList.remove("filtre_secondaire_actif");
+async function noDisplayFocusUstensile(el){
+    el.parentElement.parentElement.classList.remove("filtre_secondaire_actif");
     document.getElementById("filtre_secondaire_composants_ustensiles").style.display = "none";
     document.getElementById("filtre_ustensiles_input").placeholder = "Ustensiles";
+}
+
+async function displayFiltreActif(element){
+    const filtreActif = document.querySelector("#filtre_actif");
+    const filtreModel = filtreFactory(element);
+    const filtreElement = filtreModel.getElementFiltreActif();
+    filtreActif.appendChild(filtreElement);
 }

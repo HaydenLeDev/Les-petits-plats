@@ -1,6 +1,6 @@
 import { displayRecettes, displayFiltreIngredients, noDisplayFocusIngredient, displayFocusIngredient,
     noDisplayFocusAppareil, displayFocusAppareil, displayFiltreAppareil, displayFocusUstensile,
-    noDisplayFocusUstensile, displayFiltreUstensile } from "../utils/display.js";
+    noDisplayFocusUstensile, displayFiltreUstensile, displayFiltreActif } from "../utils/display.js";
 export { initFiltre };
 
 
@@ -12,7 +12,8 @@ function initFiltre(data) {
     document.getElementById("filtre_titre_input").addEventListener('keyup', rechercheTitre);
     document.getElementById("filtre_ingredients_input").addEventListener('keyup', rechercheFiltreIngredient);
     document.getElementById("filtre_ingredients_input").addEventListener('focus', displayFocusIngredient);
-    document.getElementById("filtre_ingredients_input").addEventListener('blur', noDisplayFocusIngredient);
+    initEvenementFiltre(tableauIngredients);
+
 
     var tableauAppareil = [];
     tableauAppareil = tableauAppareilsInit(tableauAppareil, data);
@@ -20,8 +21,7 @@ function initFiltre(data) {
     displayFiltreAppareil(tableauAppareil);
     document.getElementById("filtre_appareils_input").addEventListener('keyup', rechercheFiltreAppareil);
     document.getElementById("filtre_appareils_input").addEventListener('focus', displayFocusAppareil);
-    document.getElementById("filtre_appareils_input").addEventListener('blur', noDisplayFocusAppareil);
-
+    initEvenementFiltre(tableauAppareil);
 
     var tableauUstensiles = [];
     tableauUstensiles = tableauUstensilesInit(tableauUstensiles, data);
@@ -29,7 +29,8 @@ function initFiltre(data) {
     displayFiltreUstensile(tableauUstensiles);
     document.getElementById("filtre_ustensiles_input").addEventListener('keyup', rechercheFiltreUstensile);
     document.getElementById("filtre_ustensiles_input").addEventListener('focus', displayFocusUstensile);
-    document.getElementById("filtre_ustensiles_input").addEventListener('blur', noDisplayFocusUstensile);
+    initEvenementFiltre(tableauUstensiles);
+    
 
     function rechercheTitre() {
         let inputUser = this.value;
@@ -109,6 +110,26 @@ function initFiltre(data) {
             displayFiltreUstensile(result);
         }
     }
+
+    function initEvenementFiltre(tab){
+        let boutons = document.querySelectorAll(".element_button_filtre");
+        boutons.forEach(element => {
+            document.getElementById(element.id).addEventListener("click", ajoutFiltre);
+        });
+    }
+
+    function ajoutFiltre(){
+        console.log(this.id);
+        displayFiltreActif(this.id);
+        supprimerFiltreTab(tableauIngredients, this.id);
+        noDisplayFocusIngredient(this);
+        noDisplayFocusAppareil(this);
+        noDisplayFocusUstensile(this);
+        document.getElementById("filtre_secondaire_composants_ingredient").innerHTML = "";
+        displayFiltreIngredients(tableauIngredients);
+        console.log(tableauIngredients);
+    }
+    
 }
 
 
@@ -155,4 +176,14 @@ function tableauUstensilesInit(tab, data) {
         });
     });
     return tab;
+}
+
+
+
+function supprimerFiltreTab(tab, element){
+    let index = tab.indexOf(element);
+    if (index !== -1){
+        tab.splice(index, 1);
+    }
+    console.log(index);
 }
