@@ -16,15 +16,35 @@
     gap: 20px;
 }
 
-.filtre_actif li{
-    background-color: var(--blue);
+.element_filtre_actif{
+    display: flex;
+    gap: 13px;
     border-radius: 5px;
     color: var(--white);
     padding: 10px 20px 10px 20px;
+    list-style: none;
+}
+
+.element_filtre_actif span {
     font-weight: 700;
     font-size: 14px;
-    line-height: 17px;
-    list-style: none;
+}
+
+
+.element_filtre_actif i {
+    font-size: 20px;
+}
+
+.blue_element{
+    background-color: var(--blue);
+}
+
+.green_element{
+    background-color: var(--green);
+}
+
+.orange_element{
+    background-color: var(--orange);
 }
 
 .element_filtre_actif_text{

@@ -5,6 +5,8 @@ export { initFiltre };
 
 
 function initFiltre(data) {
+
+
     var tableauIngredients = [];
     tableauIngredients = tableauIngredientsInits(tableauIngredients, data);
     document.getElementById("filtre_secondaire_composants_ingredient").innerHTML = "";
@@ -12,7 +14,7 @@ function initFiltre(data) {
     document.getElementById("filtre_titre_input").addEventListener('keyup', rechercheTitre);
     document.getElementById("filtre_ingredients_input").addEventListener('keyup', rechercheFiltreIngredient);
     document.getElementById("filtre_ingredients_input").addEventListener('focus', displayFocusIngredient);
-    initEvenementFiltre(tableauIngredients);
+    initEvenementFiltre();
 
 
     var tableauAppareil = [];
@@ -21,7 +23,7 @@ function initFiltre(data) {
     displayFiltreAppareil(tableauAppareil);
     document.getElementById("filtre_appareils_input").addEventListener('keyup', rechercheFiltreAppareil);
     document.getElementById("filtre_appareils_input").addEventListener('focus', displayFocusAppareil);
-    initEvenementFiltre(tableauAppareil);
+    initEvenementFiltre();
 
     var tableauUstensiles = [];
     tableauUstensiles = tableauUstensilesInit(tableauUstensiles, data);
@@ -29,7 +31,7 @@ function initFiltre(data) {
     displayFiltreUstensile(tableauUstensiles);
     document.getElementById("filtre_ustensiles_input").addEventListener('keyup', rechercheFiltreUstensile);
     document.getElementById("filtre_ustensiles_input").addEventListener('focus', displayFocusUstensile);
-    initEvenementFiltre(tableauUstensiles);
+    initEvenementFiltre();
     
 
     function rechercheTitre() {
@@ -62,7 +64,7 @@ function initFiltre(data) {
         var result = [];
         document.getElementById("filtre_secondaire_composants_ingredient").innerHTML = "";
         displayFiltreIngredients(tableauIngredients);
-        initEvenementFiltre(tableauIngredients);
+        initEvenementFiltre();
         if (nombreCharMin(inputUser)) {
             tableauIngredients.forEach(element => {
                 if (comparaisonString(element, inputUser)) {
@@ -72,7 +74,7 @@ function initFiltre(data) {
             console.log(result);
             document.getElementById("filtre_secondaire_composants_ingredient").innerHTML = "";
             displayFiltreIngredients(result);
-            initEvenementFiltre(result);
+            initEvenementFiltre();
         }
     }
 
@@ -82,6 +84,7 @@ function initFiltre(data) {
         tableauAppareil = tableauAppareilsInit(tableauAppareil, data);
         document.getElementById("filtre_secondaire_composants_appareil").innerHTML = "";
         displayFiltreAppareil(tableauAppareil);
+        initEvenementFiltre();
         if (nombreCharMin(inputUser)) {
             tableauAppareil.forEach(element => {
                 if (comparaisonString(element, inputUser)) {
@@ -91,6 +94,7 @@ function initFiltre(data) {
             console.log(result);
             document.getElementById("filtre_secondaire_composants_appareil").innerHTML = "";
             displayFiltreAppareil(result);
+            initEvenementFiltre();
         }
     }
 
@@ -100,6 +104,7 @@ function initFiltre(data) {
         tableauUstensiles = tableauAppareilsInit(tableauUstensiles, data);
         document.getElementById("filtre_secondaire_composants_ustensiles").innerHTML = "";
         displayFiltreUstensile(tableauUstensiles);
+        initEvenementFiltre();
         if (nombreCharMin(inputUser)) {
             tableauUstensiles.forEach(element => {
                 if (comparaisonString(element, inputUser)) {
@@ -109,10 +114,11 @@ function initFiltre(data) {
             console.log(result);
             document.getElementById("filtre_secondaire_composants_ustensiles").innerHTML = "";
             displayFiltreUstensile(result);
+            initEvenementFiltre();
         }
     }
 
-    function initEvenementFiltre(tab){
+    function initEvenementFiltre(){
         let boutons = document.querySelectorAll(".element_button_filtre");
         boutons.forEach(element => {
             document.getElementById(element.id).addEventListener("click", ajoutFiltre);
@@ -121,14 +127,20 @@ function initFiltre(data) {
 
     function ajoutFiltre(){
         console.log(this.id);
-        displayFiltreActif(this.id);
+        displayFiltreActif(this);
         supprimerFiltreTab(tableauIngredients, this.id);
+        supprimerFiltreTab(tableauAppareil, this.id);
+        supprimerFiltreTab(tableauUstensiles, this.id);
         noDisplayFocusIngredient(this);
         noDisplayFocusAppareil(this);
         noDisplayFocusUstensile(this);
         document.getElementById("filtre_secondaire_composants_ingredient").innerHTML = "";
         displayFiltreIngredients(tableauIngredients);
-        initEvenementFiltre(tableauIngredients);
+        document.getElementById("filtre_secondaire_composants_appareil").innerHTML = "";
+        displayFiltreAppareil(tableauAppareil);
+        document.getElementById("filtre_secondaire_composants_ustensiles").innerHTML = "";
+        displayFiltreUstensile(tableauUstensiles);
+        initEvenementFiltre();
         console.log(tableauIngredients);
     }
     
