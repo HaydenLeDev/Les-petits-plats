@@ -84,7 +84,7 @@
 }
 
 .filtre_secondaire_actif{
-    width: auto;
+    width: 40%;
     overflow: hidden;
 }
 
@@ -123,11 +123,22 @@ input:focus {
     position: relative;
     top: 29px;
     left: -20px;
-    width: 9px;
-    height: 9px;
+    width: 10px;
+    height: 10px;
     border: solid var(--white);
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
+}
+
+.fleche_active{
+    position: relative;
+    top: 29px;
+    left: -20px;
+    width: 10px;
+    height: 10px;
+    border: solid var(--white);
+    border-width: 0 2px 2px 0;
+    transform: rotate(225deg);
 }
 
 .filtre_secondaire_composants{

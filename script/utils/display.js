@@ -58,54 +58,63 @@ async function displayFiltreUstensile(tab){
 
 async function displayFocusIngredient(){
     this.parentElement.parentElement.classList.add("filtre_secondaire_actif");
+    document.getElementById("fleche_ingredients").setAttribute("class", "fleche_active");
     document.getElementById("filtre_secondaire_composants_ingredient").style.display = "grid";
     document.getElementById("filtre_ingredients_input").placeholder = "Recherche un ingrédient";
 }
 
 async function noDisplayFocusIngredientButton(el){
     el.parentElement.parentElement.parentElement.classList.remove("filtre_secondaire_actif");
+    document.getElementById("fleche_ingredients").setAttribute("class", "fleche");
     document.getElementById("filtre_secondaire_composants_ingredient").style.display = "none";
     document.getElementById("filtre_ingredients_input").placeholder = "Ingrédients";
 }
 
 async function displayFocusAppareil(){
     this.parentElement.parentElement.classList.add("filtre_secondaire_actif");
+    document.getElementById("fleche_appareils").setAttribute("class", "fleche_active");
     document.getElementById("filtre_secondaire_composants_appareil").style.display = "grid";
     document.getElementById("filtre_appareils_input").placeholder = "Recherche d'un appareils";
 }
 
 async function noDisplayFocusAppareilButton(el){
     el.parentElement.parentElement.classList.remove("filtre_secondaire_actif");
+    document.getElementById("fleche_appareils").setAttribute("class", "fleche");
     document.getElementById("filtre_secondaire_composants_appareil").style.display = "none";
     document.getElementById("filtre_appareils_input").placeholder = "Appareils";
 }
 
 async function displayFocusUstensile(){
     this.parentElement.parentElement.classList.add("filtre_secondaire_actif");
+    document.getElementById("fleche_ustensiles").setAttribute("class", "fleche_active");
     document.getElementById("filtre_secondaire_composants_ustensiles").style.display = "grid";
     document.getElementById("filtre_ustensiles_input").placeholder = "Recherche d'un ustensiles";
 }
 
 async function noDisplayFocusUstensileButton(el){
     el.parentElement.parentElement.classList.remove("filtre_secondaire_actif");
+    document.getElementById("fleche_ustensiles").setAttribute("class", "fleche");
     document.getElementById("filtre_secondaire_composants_ustensiles").style.display = "none";
     document.getElementById("filtre_ustensiles_input").placeholder = "Ustensiles";
 }
 
 async function noDisplayFocusIngredient(el){
     el.parentElement.parentElement.classList.remove("filtre_secondaire_actif");
+    document.getElementById("fleche_ingredients").setAttribute("class", "fleche");
     document.getElementById("filtre_secondaire_composants_ingredient").style.display = "none";
     document.getElementById("filtre_ingredients_input").placeholder = "Ingrédients";
 }
 
 async function noDisplayFocusAppareil(el){
     el.parentElement.parentElement.classList.remove("filtre_secondaire_actif");
+    document.getElementById("fleche_appareils").setAttribute("class", "fleche");
     document.getElementById("filtre_secondaire_composants_appareil").style.display = "none";
     document.getElementById("filtre_appareils_input").placeholder = "Appareils";
 }
 
 async function noDisplayFocusUstensiles(el){
     el.parentElement.parentElement.classList.remove("filtre_secondaire_actif");
+    document.getElementById("fleche_ustensiles").setAttribute("class", "fleche");
     document.getElementById("filtre_secondaire_composants_ustensiles").style.display = "none";
     document.getElementById("filtre_ustensiles_input").placeholder = "Ustensiles";
 }
