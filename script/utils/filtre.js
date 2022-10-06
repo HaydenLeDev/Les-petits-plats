@@ -5,8 +5,10 @@ export { initFiltre };
 
 
 function initFiltre(data) {
+    //Initialisation de mes filtre actif
+    var tableauFiltreActif = [];
 
-
+    //Initialisation Filtre des ingredients
     var tableauIngredients = [];
     tableauIngredients = tableauIngredientsInits(tableauIngredients, data);
     document.getElementById("filtre_secondaire_composants_ingredient").innerHTML = "";
@@ -14,17 +16,16 @@ function initFiltre(data) {
     document.getElementById("filtre_titre_input").addEventListener('keyup', rechercheTitre);
     document.getElementById("filtre_ingredients_input").addEventListener('keyup', rechercheFiltreIngredient);
     document.getElementById("filtre_ingredients_input").addEventListener('focus', displayFocusIngredient);
-    initEvenementFiltre();
 
-
+    //Initialisation Filtre des ingredients
     var tableauAppareil = [];
     tableauAppareil = tableauAppareilsInit(tableauAppareil, data);
     document.getElementById("filtre_secondaire_composants_appareil").innerHTML = "";
     displayFiltreAppareil(tableauAppareil);
     document.getElementById("filtre_appareils_input").addEventListener('keyup', rechercheFiltreAppareil);
     document.getElementById("filtre_appareils_input").addEventListener('focus', displayFocusAppareil);
-    initEvenementFiltre();
-
+    
+    //Initialisation Filtre des ingredients
     var tableauUstensiles = [];
     tableauUstensiles = tableauUstensilesInit(tableauUstensiles, data);
     document.getElementById("filtre_secondaire_composants_ustensiles").innerHTML = "";
@@ -33,7 +34,9 @@ function initFiltre(data) {
     document.getElementById("filtre_ustensiles_input").addEventListener('focus', displayFocusUstensile);
     initEvenementFiltre();
     
-
+    /**
+     * Fonction recherchant toutes les recettes ayant les inputs dans le titre. 
+     */
     function rechercheTitre() {
         let inputUser = this.value;
         let result = [];
@@ -59,6 +62,9 @@ function initFiltre(data) {
         }
     }
 
+    /**
+     * Recherche pour les filtre Ingredient
+     */
     function rechercheFiltreIngredient() {
         let inputUser = this.value;
         var result = [];
@@ -78,6 +84,9 @@ function initFiltre(data) {
         }
     }
 
+    /**
+     *  Recherche pour les filtre Appareil
+     */
     function rechercheFiltreAppareil() {
         let inputUser = this.value;
         var result = [];
@@ -98,6 +107,9 @@ function initFiltre(data) {
         }
     }
 
+    /**
+     *  Recherche pour les filtre Ustensile
+     */
     function rechercheFiltreUstensile() {
         let inputUser = this.value;
         var result = [];
@@ -118,6 +130,9 @@ function initFiltre(data) {
         }
     }
 
+    /**
+     * Initialise les evenements pour chaque bouton des filtres.
+     */
     function initEvenementFiltre(){
         let boutons = document.querySelectorAll(".element_button_filtre");
         boutons.forEach(element => {
@@ -125,6 +140,9 @@ function initFiltre(data) {
         });
     }
 
+    /**
+     * Fontion se déclanchant quand on click sur un bouton filtre.
+     */
     function ajoutFiltre(){
         console.log(this.id);
         displayFiltreActif(this);
@@ -141,13 +159,41 @@ function initFiltre(data) {
         document.getElementById("filtre_secondaire_composants_ustensiles").innerHTML = "";
         displayFiltreUstensile(tableauUstensiles);
         initEvenementFiltre();
-        console.log(tableauIngredients);
+        console.log(tableauFiltreActif);
     }
     
+    /**
+     * Supprime un element dans le tableau et le rajoute dans le tableau des filtres Actif
+     * @param {*} tab 
+     * @param {*} element 
+     */
+    function supprimerFiltreTab(tab, element){
+        let index = tab.indexOf(element);
+        if (index !== -1){
+            tableauFiltreActif.push(element);
+            tab.splice(index, 1);
+        }
+        console.log(index);
+    }
+
+    function ajoutEvenementFiltreActif(){
+        tableauFiltreActif.forEach(element => {
+            console.log(element);
+            document.getElementById(element).addEventListener("click", supprimeFiltre);
+        });
+    }
+
+    function supprimeFiltre(){
+        console.log("coucou");
+    }
 }
 
 
-
+/**
+ * Vérifie si le nombre de char est supperieur a 2
+ * @param {} text 
+ * @returns 
+ */
 function nombreCharMin(text) {
     if (text.length > 2) {
         return true;
@@ -155,12 +201,24 @@ function nombreCharMin(text) {
     return false;
 }
 
+/**
+ * Compare 2 string
+ * @param {*} text_1 
+ * @param {*} text_2 
+ * @returns 
+ */
 function comparaisonString(text_1, text_2) {
     let text_1Up = text_1.toUpperCase();
     let text_2Up = text_2.toUpperCase();
     return text_1Up.includes(text_2Up);
 }
 
+/**
+ * Initialise le tableau des Ingredients.
+ * @param {*} tab 
+ * @param {*} data 
+ * @returns 
+ */
 function tableauIngredientsInits(tab, data) {
     data.forEach(element => {
         element.ingredients.forEach(i => {
@@ -172,6 +230,12 @@ function tableauIngredientsInits(tab, data) {
     return tab;
 }
 
+/**
+ * Initialise le tableau des Appareils.
+ * @param {*} tab 
+ * @param {*} data 
+ * @returns 
+ */
 function tableauAppareilsInit(tab, data) {
     data.forEach(element => {
         if (tab.indexOf(element.appliance) === -1) {
@@ -181,6 +245,12 @@ function tableauAppareilsInit(tab, data) {
     return tab;
 }
 
+/**
+ * Initialise le tableau des Ustensiles.
+ * @param {*} tab 
+ * @param {*} data 
+ * @returns 
+ */
 function tableauUstensilesInit(tab, data) {
     data.forEach(element => {
         element.ustensils.forEach(i => {
@@ -194,10 +264,3 @@ function tableauUstensilesInit(tab, data) {
 
 
 
-function supprimerFiltreTab(tab, element){
-    let index = tab.indexOf(element);
-    if (index !== -1){
-        tab.splice(index, 1);
-    }
-    console.log(index);
-}
