@@ -24,6 +24,22 @@
     align-items: center;
 }
 
+.card-info-minutes{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.card-info-minutes i{
+    font-size: 20px;
+}
+
+
+.card-info-minutes p{
+    font-weight: 700;
+    font-size: 18px;
+}
+
 .card-info-secondaire{
     display: flex;
     justify-content: space-between;

@@ -7,20 +7,24 @@ function recetteFactory(recette){
         const card = document.createElement("div");
         const image = document.createElement("div");
         const infoCard = document.createElement("div");
+        const infoMinute = document.createElement("div");
         const infoCardPrincipal = document.createElement("div");
         const infoCardSecondaire = document.createElement("div");
         const titre = document.createElement("h2");
         const descript = document.createElement("p");
         const min = document.createElement("p");
+        const horloge = document.createElement("i");
         const ingredientListe = document.createElement("div");
 
         card.classList.add("card");
         image.classList.add("card-image");
         infoCard.classList.add("card-info");
+        infoMinute.classList.add("card-info-minutes");
         infoCardPrincipal.classList.add("card-info-principal");
         infoCardSecondaire.classList.add("card-info-secondaire");
         titre.classList.add("card-info-titre");
         min.classList.add("card-info-min");
+        horloge.setAttribute("class", "far fa-clock");
         ingredientListe.classList.add("card-info-ingredients");
         descript.classList.add("card-info-description");
 
@@ -53,8 +57,11 @@ function recetteFactory(recette){
 
         descript.textContent = description;
 
+        infoMinute.appendChild(horloge);
+        infoMinute.appendChild(min);
+
         infoCardPrincipal.appendChild(titre);
-        infoCardPrincipal.appendChild(min);
+        infoCardPrincipal.appendChild(infoMinute);
 
         infoCardSecondaire.appendChild(ingredientListe);
         infoCardSecondaire.appendChild(descript);

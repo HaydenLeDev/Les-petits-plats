@@ -1,17 +1,20 @@
 .filtres{
     display: flex;
     flex-direction: column;
-    gap: 77px;
+    height: 214px;
 }
 
 .filtre_titre{
     width: calc(100% - 200px);
     height: 69px;
     padding: 0px 100px 0px 100px;
+    margin-bottom: 5px;
 }
 
 .filtre_actif{
     padding-left: 100px;
+    margin-top: 20px;
+    margin-bottom: -5px;
     display: flex;
     gap: 20px;
 }
@@ -55,7 +58,7 @@
 
 #filtre_titre_input{
     width: 100%;
-    height: 100%;
+    height: 69px;
     background-color: var(--grey);
     border-radius: 5px;
     border: none;
@@ -66,19 +69,22 @@
 }
 
 .filtre_autre{
-    display: flex;
-    margin-left: 100px;
-    gap: 20px;
+    margin-left: 80px; 
+    margin-top: 15px;
+    z-index: 1;
 }
 
 .filtre_secondaire{
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 20px;
     width: 170px;
-    z-index: 1;
+    z-index: 2;
     transition: 0.4s ease-in-out;
 }
 
 .filtre_secondaire_actif{
-    width: 40%;
+    width: auto;
     overflow: hidden;
 }
 
