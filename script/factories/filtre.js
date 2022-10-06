@@ -19,6 +19,7 @@ function filtreFactory(elementFiltre) {
         const ico = document.createElement("i");
         elementFiltreLi.classList.add("element_filtre_actif");
         ico.setAttribute("class", "far fa-times-circle");
+        elementFiltreLi.setAttribute("id", elementFiltre.id);
         spanText.classList.add("element_filtre_actif_text");
         spanText.textContent = elementFiltre.id;
 
