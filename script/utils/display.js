@@ -1,8 +1,9 @@
 import { recetteFactory } from "../factories/recettes.js";
 import { filtreFactory } from "../factories/filtre.js";
-export { displayRecettes, displayFiltreIngredients, displayFocusIngredient, noDisplayFocusIngredient,
-    displayFocusAppareil, noDisplayFocusAppareil, displayFiltreAppareil, displayFocusUstensile,
-    noDisplayFocusUstensile, displayFiltreUstensile, displayFiltreActif};
+export { displayRecettes, displayFiltreIngredients, displayFocusIngredient, noDisplayFocusIngredientButton,
+    displayFocusAppareil, noDisplayFocusAppareilButton, displayFiltreAppareil, displayFocusUstensile,
+    noDisplayFocusUstensileButton, displayFiltreUstensile, displayFiltreActif, noDisplayFocusIngredient,
+    noDisplayFocusAppareil, noDisplayFocusUstensiles};
 
 async function displayRecettes(data){
     const recettesSection = document.querySelector(".recettes");
@@ -61,7 +62,7 @@ async function displayFocusIngredient(){
     document.getElementById("filtre_ingredients_input").placeholder = "Recherche un ingrédient";
 }
 
-async function noDisplayFocusIngredient(el){
+async function noDisplayFocusIngredientButton(el){
     el.parentElement.parentElement.parentElement.classList.remove("filtre_secondaire_actif");
     document.getElementById("filtre_secondaire_composants_ingredient").style.display = "none";
     document.getElementById("filtre_ingredients_input").placeholder = "Ingrédients";
@@ -73,7 +74,7 @@ async function displayFocusAppareil(){
     document.getElementById("filtre_appareils_input").placeholder = "Recherche d'un appareils";
 }
 
-async function noDisplayFocusAppareil(el){
+async function noDisplayFocusAppareilButton(el){
     el.parentElement.parentElement.classList.remove("filtre_secondaire_actif");
     document.getElementById("filtre_secondaire_composants_appareil").style.display = "none";
     document.getElementById("filtre_appareils_input").placeholder = "Appareils";
@@ -85,7 +86,25 @@ async function displayFocusUstensile(){
     document.getElementById("filtre_ustensiles_input").placeholder = "Recherche d'un ustensiles";
 }
 
-async function noDisplayFocusUstensile(el){
+async function noDisplayFocusUstensileButton(el){
+    el.parentElement.parentElement.classList.remove("filtre_secondaire_actif");
+    document.getElementById("filtre_secondaire_composants_ustensiles").style.display = "none";
+    document.getElementById("filtre_ustensiles_input").placeholder = "Ustensiles";
+}
+
+async function noDisplayFocusIngredient(el){
+    el.parentElement.parentElement.classList.remove("filtre_secondaire_actif");
+    document.getElementById("filtre_secondaire_composants_ingredient").style.display = "none";
+    document.getElementById("filtre_ingredients_input").placeholder = "Ingrédients";
+}
+
+async function noDisplayFocusAppareil(el){
+    el.parentElement.parentElement.classList.remove("filtre_secondaire_actif");
+    document.getElementById("filtre_secondaire_composants_appareil").style.display = "none";
+    document.getElementById("filtre_appareils_input").placeholder = "Appareils";
+}
+
+async function noDisplayFocusUstensiles(el){
     el.parentElement.parentElement.classList.remove("filtre_secondaire_actif");
     document.getElementById("filtre_secondaire_composants_ustensiles").style.display = "none";
     document.getElementById("filtre_ustensiles_input").placeholder = "Ustensiles";

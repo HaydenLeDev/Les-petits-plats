@@ -1,6 +1,7 @@
-import { displayRecettes, displayFiltreIngredients, noDisplayFocusIngredient, displayFocusIngredient,
-    noDisplayFocusAppareil, displayFocusAppareil, displayFiltreAppareil, displayFocusUstensile,
-    noDisplayFocusUstensile, displayFiltreUstensile, displayFiltreActif } from "../utils/display.js";
+import { displayRecettes, displayFiltreIngredients, noDisplayFocusIngredientButton, displayFocusIngredient,
+    noDisplayFocusAppareilButton, displayFocusAppareil, displayFiltreAppareil, displayFocusUstensile,
+    noDisplayFocusUstensileButton, displayFiltreUstensile, displayFiltreActif, noDisplayFocusIngredient,
+    noDisplayFocusAppareil, noDisplayFocusUstensiles } from "../utils/display.js";
 export { initFiltre };
 
 
@@ -33,7 +34,6 @@ function initFiltre(data) {
     document.getElementById("filtre_ustensiles_input").addEventListener('keyup', rechercheFiltreUstensile);
     document.getElementById("filtre_ustensiles_input").addEventListener('focus', displayFocusUstensile);
     initEvenementFiltre();
-    
     /**
      * Fonction recherchant toutes les recettes ayant les inputs dans le titre. 
      */
@@ -149,9 +149,9 @@ function initFiltre(data) {
         supprimerFiltreTab(tableauIngredients, this.id);
         supprimerFiltreTab(tableauAppareil, this.id);
         supprimerFiltreTab(tableauUstensiles, this.id);
-        noDisplayFocusIngredient(this);
-        noDisplayFocusAppareil(this);
-        noDisplayFocusUstensile(this);
+        noDisplayFocusIngredientButton(this);
+        noDisplayFocusAppareilButton(this);
+        noDisplayFocusUstensileButton(this);
         document.getElementById("filtre_secondaire_composants_ingredient").innerHTML = "";
         displayFiltreIngredients(tableauIngredients);
         document.getElementById("filtre_secondaire_composants_appareil").innerHTML = "";
@@ -184,6 +184,9 @@ function initFiltre(data) {
         });
     }
 
+    /**
+     * Delete the tag on which the user clicked.
+     */
     function supprimeFiltreTag(){
         console.log(this.id);
         if (this.getAttribute('class').includes("blue_element")){
@@ -303,3 +306,34 @@ function tableauUstensilesInit(tab, data) {
     });
     return tab;
 }
+
+/**
+ * Takes care of the management of the focus of the different filters
+ */
+function estActif(){
+    var ingredientInput = document.getElementById("filtre_ingredients_input");
+    var appareilsInput = document.getElementById("filtre_appareils_input");
+    var ustensilesInput = document.getElementById("filtre_ustensiles_input");
+    console.log(document.activeElement);
+    if (document.activeElement === ingredientInput){
+        console.log("ingredient");
+        noDisplayFocusAppareil(appareilsInput);
+        noDisplayFocusUstensiles(ustensilesInput);
+    } else if (document.activeElement === appareilsInput){
+        console.log("appareil");
+        noDisplayFocusIngredient(ingredientInput);
+        noDisplayFocusUstensiles(ustensilesInput);
+    } else if (document.activeElement === ustensilesInput){
+        console.log("ustensile");
+        noDisplayFocusIngredient(ingredientInput);
+        noDisplayFocusAppareil(appareilsInput);
+    } else {
+        console.log("fermer");
+        noDisplayFocusIngredient(ingredientInput);
+        noDisplayFocusAppareil(appareilsInput);
+        noDisplayFocusUstensiles(ustensilesInput);
+    }
+    
+}
+
+document.getElementById("body").addEventListener("click", estActif);
