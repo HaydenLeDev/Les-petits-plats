@@ -180,11 +180,11 @@ function initFiltre(data) {
     function ajoutEvenementFiltreActif(){
         tableauFiltreActif.forEach(element => {
             console.log(element);
-            document.getElementById(element).addEventListener("click", supprimeFiltre);
+            document.getElementById(element).addEventListener("click", supprimeFiltreTag);
         });
     }
 
-    function supprimeFiltre(){
+    function supprimeFiltreTag(){
         console.log(this.id);
         if (this.getAttribute('class').includes("blue_element")){
             console.log("Blue");
