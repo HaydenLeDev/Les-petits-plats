@@ -20,6 +20,7 @@ async function displayFiltreIngredients(tab){
     let nbMax = 0;
     tab.forEach(el => {
         if(nbMax < 30){
+            gestionGridTag(nbMax, filtreIngredientsDom);
             const filtreModel = filtreFactory(el);
             const filtreElement = filtreModel.getFiltreButtonDOM();
             filtreIngredientsDom.appendChild(filtreElement);
@@ -29,14 +30,17 @@ async function displayFiltreIngredients(tab){
     });
 }
 
+
+
 async function displayFiltreAppareil(tab){
-    const filtreIngredientsDom = document.querySelector("#filtre_secondaire_composants_appareil");
+    const filtreAppareilDom = document.querySelector("#filtre_secondaire_composants_appareil");
     let nbMax = 0;
     tab.forEach(el => {
         if(nbMax < 30){
+            gestionGridTag(nbMax, filtreAppareilDom);
             const filtreModel = filtreFactory(el);
             const filtreElement = filtreModel.getFiltreButtonDOM();
-            filtreIngredientsDom.appendChild(filtreElement);
+            filtreAppareilDom.appendChild(filtreElement);
             nbMax++;
         }
     });
@@ -47,6 +51,7 @@ async function displayFiltreUstensile(tab){
     let nbMax = 0;
     tab.forEach(el => {
         if(nbMax < 30){
+            gestionGridTag(nbMax, filtreUstensilesDom);
             const filtreModel = filtreFactory(el);
             const filtreElement = filtreModel.getFiltreButtonDOM();
             filtreUstensilesDom.appendChild(filtreElement);
@@ -56,7 +61,7 @@ async function displayFiltreUstensile(tab){
     });
 }
 
-async function displayFocusIngredient(){
+async function displayFocusIngredient(){   
     this.parentElement.parentElement.classList.add("filtre_secondaire_actif");
     document.getElementById("fleche_ingredients").setAttribute("class", "fleche_active");
     document.getElementById("filtre_secondaire_composants_ingredient").style.display = "grid";
@@ -124,4 +129,25 @@ async function displayFiltreActif(element){
     const filtreModel = filtreFactory(element);
     const filtreElement = filtreModel.getElementFiltreActif();
     filtreActif.appendChild(filtreElement);
+}
+
+function gestionGridTag(nbElement, elementDOM){
+    if (nbElement > 20){
+        elementDOM.style.cssText = `
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr);
+            `;
+    }
+    if (nbElement < 20 && nbElement > 10){
+        elementDOM.style.cssText = `
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr);
+            `;
+    }
+    if (nbElement < 10 && nbElement > -1){
+        elementDOM.style.cssText = `
+            display: grid; 
+            grid-template-columns: repeat(1, 1fr);
+            `;
+    }
 }

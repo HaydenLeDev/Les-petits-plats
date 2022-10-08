@@ -84,7 +84,7 @@
 }
 
 .filtre_secondaire_actif{
-    width: 40%;
+    width: auto;
     overflow: hidden;
 }
 
@@ -143,8 +143,8 @@ input:focus {
 
 .filtre_secondaire_composants{
     display: none;
-    grid-template-columns: repeat(3, 1fr);
     justify-items: flex-start;
+    column-gap: 90px;
     row-gap: 10px;
     padding: 0px 19px 16px 19px;
 }
