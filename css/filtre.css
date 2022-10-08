@@ -119,6 +119,10 @@ input:focus {
     color: var(--white);
 }
 
+input:focus::placeholder{
+    opacity: 0.5;
+}
+
 .fleche{
     position: relative;
     top: 29px;
