@@ -79,7 +79,7 @@ async function displayFocusAppareil(){
     this.parentElement.parentElement.classList.add("filtre_secondaire_actif");
     document.getElementById("fleche_appareils").setAttribute("class", "fleche_active");
     document.getElementById("filtre_secondaire_composants_appareil").style.display = "grid";
-    document.getElementById("filtre_appareils_input").placeholder = "Recherche d'un appareils";
+    document.getElementById("filtre_appareils_input").placeholder = "Recherche appareils";
 }
 
 async function noDisplayFocusAppareilButton(el){
