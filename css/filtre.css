@@ -68,6 +68,13 @@
     line-height: 22px;
 }
 
+.filtre_titre_icone{
+    position: relative;
+    font-size: 30px;
+    top: -50px;
+    left: calc(100% - 40px);
+}
+
 .filtre_autre{
     margin-left: 80px; 
     margin-top: 15px;
