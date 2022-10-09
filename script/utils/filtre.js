@@ -129,6 +129,7 @@ function initFiltre(data) {
             document.getElementById("filtre_secondaire_composants_ustensiles").innerHTML = "";
             displayFiltreUstensile(result);
             initEvenementFiltre();
+            console.log('');
         }
     }
 
