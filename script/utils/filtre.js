@@ -43,27 +43,70 @@ function initFiltre(data) {
      */
     function rechercheTitre() {
         let inputUser = this.value;
-        let result = [];
+        let resultsTitre = [];
+        let resultsAvecTag = [];
         if (nombreCharMin(inputUser)) {
             document.getElementById("liste_recette").innerHTML = "";
-            data.forEach(element => {
-                console.log(element.name);
-                if (comparaisonString(element.name, inputUser)) {
-                    result.push(element);
+            console.log(tableauFiltreActif);
+            for(let i = 0; i < data.length; i++){
+                if (comparaisonString(data[i].name, inputUser)) {
+                    resultsTitre.push(data[i]);
                 }
-            });
-            console.log(result);
-            if (result.length == 0) {
-                document.getElementById("recette_null").style.display = "flex";
-            } else {
-                document.getElementById("recette_null").style.display = "none";
-                displayRecettes(result);
             }
 
+            if (resultsTitre.length == 0) {
+                document.getElementById("recette_null").style.display = "flex";
+            } else {
+                for(let i = 0; i < resultsTitre.length; i++){
+                    if (rechercheTag(resultsTitre[i])){
+                        resultsAvecTag.push(resultsTitre[i]);
+                    }
+                }
+                
+                if (resultsAvecTag.length == 0) {
+                    document.getElementById("recette_null").style.display = "flex";
+                } else {
+                    document.getElementById("recette_null").style.display = "none";
+                    displayRecettes(resultsAvecTag);
+                }
+            }
         } else {
             document.getElementById("liste_recette").innerHTML = "";
             displayRecettes(data);
         }
+    }
+
+    function rechercheTag(element){
+        let tableauFiltreNoMaj = [];
+        for(let i = 0; i < tableauFiltreActif.length; i++){
+            tableauFiltreNoMaj.push(tableauFiltreActif[i].toLowerCase());
+        }
+
+        let flag = 0;
+        console.log(element);
+        for(let i = 0; i < element.ingredients.length; i++){
+            if (tableauFiltreNoMaj.indexOf(element.ingredients[i].ingredient.toLowerCase()) !== -1){
+                flag++;
+            }
+        }
+
+
+        if (tableauFiltreNoMaj.indexOf(element.appliance.toLowerCase()) !== -1){
+            flag++;
+        }
+
+        for(let i = 0; i < element.ustensils.length; i++){
+            if (tableauFiltreNoMaj.indexOf(element.ustensils[i].toLowerCase()) !== -1){
+                flag++;
+            }
+        }
+
+        if(flag === tableauFiltreNoMaj.length){
+            return true;
+        }
+
+        return false;
+        
     }
 
     /**
@@ -129,7 +172,6 @@ function initFiltre(data) {
             document.getElementById("filtre_secondaire_composants_ustensiles").innerHTML = "";
             displayFiltreUstensile(result);
             initEvenementFiltre();
-            console.log('');
         }
     }
 
