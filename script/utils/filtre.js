@@ -41,29 +41,70 @@ function initFiltre(data) {
     /**
      * Fonction recherchant toutes les recettes ayant les inputs dans le titre. 
      */
-    function rechercheTitre() {
+     function rechercheTitre() {
         let inputUser = this.value;
-        let result = [];
+        let resultsTitre = [];
+        let resultsAvecTag = [];
         if (nombreCharMin(inputUser)) {
             document.getElementById("liste_recette").innerHTML = "";
+            console.log(tableauFiltreActif);
             data.forEach(element => {
-                console.log(element.name);
                 if (comparaisonString(element.name, inputUser)) {
-                    result.push(element);
+                    resultsTitre.push(element);
                 }
             });
-            console.log(result);
-            if (result.length == 0) {
+
+            if (resultsTitre.length == 0) {
                 document.getElementById("recette_null").style.display = "flex";
             } else {
-                document.getElementById("recette_null").style.display = "none";
-                displayRecettes(result);
-            }
+                resultsTitre.forEach(el =>{
+                    if (rechercheTag(el)){
+                        resultsAvecTag.push(el);
+                    }
+                });
 
+                if (resultsAvecTag.length == 0) {
+                    document.getElementById("recette_null").style.display = "flex";
+                } else {
+                    document.getElementById("recette_null").style.display = "none";
+                    displayRecettes(resultsAvecTag);
+                }
+            }
         } else {
             document.getElementById("liste_recette").innerHTML = "";
             displayRecettes(data);
         }
+    }
+
+    function rechercheTag(element){
+        let tableauFiltreNoMaj = [];
+        tableauFiltreActif.forEach(el => {
+            tableauFiltreNoMaj.push(el.toLowerCase());
+        });
+        let flag = 0;
+        console.log(element);
+        element.ingredients.forEach(i =>{
+            if(tableauFiltreNoMaj.indexOf(i.ingredient.toLowerCase()) !== -1){
+                flag++;
+            }  
+        });
+
+        if (tableauFiltreNoMaj.indexOf(element.appliance.toLowerCase()) !== -1){
+            flag++;
+        }
+
+        element.ustensils.forEach(i =>{
+            if (tableauFiltreNoMaj.indexOf(i.toLowerCase()) !== -1){
+                flag++;
+            }
+        });
+
+        if(flag === tableauFiltreNoMaj.length){
+            return true;
+        }
+
+        return false;
+        
     }
 
     /**
