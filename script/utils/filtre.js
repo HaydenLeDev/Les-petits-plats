@@ -131,7 +131,6 @@ function initFiltre(data) {
     function rechercheFiltreAppareil() {
         let inputUser = this.value;
         var result = [];
-        tableauAppareil = tableauAppareilsInit(tableauAppareil, data);
         document.getElementById("filtre_secondaire_composants_appareil").innerHTML = "";
         displayFiltreAppareil(tableauAppareil);
         initEvenementFiltre();
@@ -153,7 +152,6 @@ function initFiltre(data) {
     function rechercheFiltreUstensile() {
         let inputUser = this.value;
         var result = [];
-        tableauUstensiles = tableauAppareilsInit(tableauUstensiles, data);
         document.getElementById("filtre_secondaire_composants_ustensiles").innerHTML = "";
         displayFiltreUstensile(tableauUstensiles);
         initEvenementFiltre();
