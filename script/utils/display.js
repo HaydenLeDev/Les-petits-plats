@@ -5,6 +5,11 @@ export { displayRecettes, displayFiltreIngredients, displayFocusIngredient, noDi
     noDisplayFocusUstensileButton, displayFiltreUstensile, displayFiltreActif, noDisplayFocusIngredient,
     noDisplayFocusAppareil, noDisplayFocusUstensiles};
 
+
+/**
+ * Displays the receipts received in a table
+ * @param {*} data 
+ */
 async function displayRecettes(data){
     const recettesSection = document.querySelector(".recettes");
 
@@ -15,6 +20,11 @@ async function displayRecettes(data){
     });
 }
 
+
+/**
+ * Create an element in the dom en for each element of the array.
+ * @param {*} tab 
+ */
 async function displayFiltreIngredients(tab){
     const filtreIngredientsDom = document.querySelector("#filtre_secondaire_composants_ingredient");
     let nbMax = 0;
@@ -31,7 +41,10 @@ async function displayFiltreIngredients(tab){
 }
 
 
-
+/**
+ * Create an element in the dom en for each element of the array.
+ * @param {*} tab 
+ */
 async function displayFiltreAppareil(tab){
     const filtreAppareilDom = document.querySelector("#filtre_secondaire_composants_appareil");
     let nbMax = 0;
@@ -46,6 +59,10 @@ async function displayFiltreAppareil(tab){
     });
 }
 
+/**
+ * Create an element in the dom en for each element of the array.
+ * @param {*} tab 
+ */
 async function displayFiltreUstensile(tab){
     const filtreUstensilesDom = document.querySelector("#filtre_secondaire_composants_ustensiles");
     let nbMax = 0;
@@ -61,6 +78,9 @@ async function displayFiltreUstensile(tab){
     });
 }
 
+/**
+ * Displays by making ingredient tags active.
+ */
 async function displayFocusIngredient(){   
     this.parentElement.parentElement.classList.add("filtre_secondaire_actif");
     document.getElementById("fleche_ingredients").setAttribute("class", "fleche_active");
@@ -68,6 +88,10 @@ async function displayFocusIngredient(){
     document.getElementById("filtre_ingredients_input").placeholder = "Recherche un ingrédient";
 }
 
+/**
+ * Hide ingredients when input is out of focus
+ * @param {*} el 
+ */
 async function noDisplayFocusIngredientButton(el){
     el.parentElement.parentElement.parentElement.classList.remove("filtre_secondaire_actif");
     document.getElementById("fleche_ingredients").setAttribute("class", "fleche");
@@ -75,6 +99,9 @@ async function noDisplayFocusIngredientButton(el){
     document.getElementById("filtre_ingredients_input").placeholder = "Ingrédients";
 }
 
+/**
+ * Displays by making device tags active.
+ */
 async function displayFocusAppareil(){
     this.parentElement.parentElement.classList.add("filtre_secondaire_actif");
     document.getElementById("fleche_appareils").setAttribute("class", "fleche_active");
@@ -82,6 +109,10 @@ async function displayFocusAppareil(){
     document.getElementById("filtre_appareils_input").placeholder = "Recherche appareils";
 }
 
+/**
+ * Hide device when input is out of focus
+ * @param {*} el 
+ */
 async function noDisplayFocusAppareilButton(el){
     el.parentElement.parentElement.classList.remove("filtre_secondaire_actif");
     document.getElementById("fleche_appareils").setAttribute("class", "fleche");
@@ -89,6 +120,9 @@ async function noDisplayFocusAppareilButton(el){
     document.getElementById("filtre_appareils_input").placeholder = "Appareils";
 }
 
+/**
+ * Displays by making utensil tags active.
+ */
 async function displayFocusUstensile(){
     this.parentElement.parentElement.classList.add("filtre_secondaire_actif");
     document.getElementById("fleche_ustensiles").setAttribute("class", "fleche_active");
@@ -96,6 +130,10 @@ async function displayFocusUstensile(){
     document.getElementById("filtre_ustensiles_input").placeholder = "Recherche d'un ustensiles";
 }
 
+/**
+ * Hide utensil when input is out of focus
+ * @param {*} el 
+ */
 async function noDisplayFocusUstensileButton(el){
     el.parentElement.parentElement.classList.remove("filtre_secondaire_actif");
     document.getElementById("fleche_ustensiles").setAttribute("class", "fleche");
@@ -103,6 +141,10 @@ async function noDisplayFocusUstensileButton(el){
     document.getElementById("filtre_ustensiles_input").placeholder = "Ustensiles";
 }
 
+/**
+ * Hide ingredients when input is out of focus
+ * @param {*} el 
+ */
 async function noDisplayFocusIngredient(el){
     el.parentElement.parentElement.classList.remove("filtre_secondaire_actif");
     document.getElementById("fleche_ingredients").setAttribute("class", "fleche");
@@ -110,6 +152,10 @@ async function noDisplayFocusIngredient(el){
     document.getElementById("filtre_ingredients_input").placeholder = "Ingrédients";
 }
 
+/**
+ * Hide device when input is out of focus
+ * @param {*} el 
+ */
 async function noDisplayFocusAppareil(el){
     el.parentElement.parentElement.classList.remove("filtre_secondaire_actif");
     document.getElementById("fleche_appareils").setAttribute("class", "fleche");
@@ -117,6 +163,10 @@ async function noDisplayFocusAppareil(el){
     document.getElementById("filtre_appareils_input").placeholder = "Appareils";
 }
 
+/**
+ * Hide utensil when input is out of focus
+ * @param {*} el 
+ */
 async function noDisplayFocusUstensiles(el){
     el.parentElement.parentElement.classList.remove("filtre_secondaire_actif");
     document.getElementById("fleche_ustensiles").setAttribute("class", "fleche");
@@ -124,6 +174,10 @@ async function noDisplayFocusUstensiles(el){
     document.getElementById("filtre_ustensiles_input").placeholder = "Ustensiles";
 }
 
+/**
+ * Create a tag according to the chosen element.
+ * @param {*} element 
+ */
 async function displayFiltreActif(element){
     const filtreActif = document.querySelector("#filtre_actif");
     const filtreModel = filtreFactory(element);
@@ -131,6 +185,11 @@ async function displayFiltreActif(element){
     filtreActif.appendChild(filtreElement);
 }
 
+/**
+ * Manages the grid.
+ * @param {*} nbElement 
+ * @param {*} elementDOM 
+ */
 function gestionGridTag(nbElement, elementDOM){
     if (nbElement > 20){
         elementDOM.style.cssText = `

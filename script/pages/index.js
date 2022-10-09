@@ -4,10 +4,12 @@ import { displayRecettes } from "../utils/display.js";
 
 var data;
 
+/**
+ * Retrieve data
+ */
 async function getData(){
     data = recipes;
 }
-
 
 getData();
 displayRecettes(data);

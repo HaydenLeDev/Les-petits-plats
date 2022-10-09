@@ -1,7 +1,20 @@
+/**
+ * This file builds the html for the tags
+ */
+
 export {filtreFactory};
 
+/**
+ * Constructs a filter element with received data.
+ * @param {*} elementFiltre 
+ * @returns 
+ */
 function filtreFactory(elementFiltre) {
 
+    /**
+     * Constructs a button tag
+     * @returns 
+     */
     function getFiltreButtonDOM(){
         const elementButton = document.createElement("button");
         const spanText = document.createElement("span");
@@ -13,6 +26,10 @@ function filtreFactory(elementFiltre) {
         return elementButton;
     }
 
+    /**
+     * Construct a tag
+     * @returns 
+     */
     function getElementFiltreActif(){
         const elementFiltreLi = document.createElement("li");
         const spanText = document.createElement("span");

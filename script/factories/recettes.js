@@ -1,7 +1,16 @@
+/**
+ * This file builds the HTML for recipes
+ */
+
 export {recetteFactory};
 
+/**
+ * Create a recipe card with the data received.
+ * @param {*} recette 
+ * @returns a recette card
+ */
 function recetteFactory(recette){
-    const {id, name, servings, ingredients, time, description, appliance, ustensils} = recette;
+    const {name, ingredients, time, description} = recette;
     
     function getRecetteCardDOM(){
         const card = document.createElement("div");

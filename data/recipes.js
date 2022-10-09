@@ -1,3 +1,7 @@
+/**
+ * This file serves as data for our site.
+ */
+
 export {recipes};
 
 const recipes = [

@@ -178,7 +178,10 @@ function initFiltre(data) {
             tab.splice(index, 1);
         }
     }
-
+    
+    /**
+     * create an event for each tag so that it can be deleted.
+     */
     function ajoutEvenementFiltreActif(){
         tableauFiltreActif.forEach(element => {
             document.getElementById(element).addEventListener("click", supprimeFiltreTag);
