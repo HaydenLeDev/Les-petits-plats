@@ -258,11 +258,14 @@ function comparaisonString(text_1, text_2) {
 function tableauIngredientsInits(tab, data) {
     data.forEach(element => {
         element.ingredients.forEach(i => {
-            if (tab.indexOf(i.ingredient) === -1) {
-                tab.push(i.ingredient);
+            if (tab.indexOf(i.ingredient.toLowerCase()) === -1) {
+                tab.push(i.ingredient.toLowerCase());
             }
         });
     });
+
+    upPremiereLettre(tab);
+
     return tab;
 }
 
@@ -274,10 +277,11 @@ function tableauIngredientsInits(tab, data) {
  */
 function tableauAppareilsInit(tab, data) {
     data.forEach(element => {
-        if (tab.indexOf(element.appliance) === -1) {
-            tab.push(element.appliance);
+        if (tab.indexOf(element.appliance.toLowerCase()) === -1) {
+            tab.push(element.appliance.toLowerCase());
         }
     });
+    upPremiereLettre(tab);
     return tab;
 }
 
@@ -290,11 +294,12 @@ function tableauAppareilsInit(tab, data) {
 function tableauUstensilesInit(tab, data) {
     data.forEach(element => {
         element.ustensils.forEach(i => {
-            if (tab.indexOf(i) === -1) {
-                tab.push(i);
+            if (tab.indexOf(i.toLowerCase()) === -1) {
+                tab.push(i.toLowerCase());
             }
         });
     });
+    upPremiereLettre(tab);
     return tab;
 }
 
@@ -324,3 +329,13 @@ function estActif(){
 }
 
 document.getElementById("body").addEventListener("click", estActif);
+
+/**
+ * Capitalize the first letter of each word
+ * @param {} tab 
+ */
+function upPremiereLettre(tab){
+    for (let i = 0; i < tab.length; i++){
+        tab[i] = tab[i][0].toUpperCase() + tab[i].slice(1);
+    }
+}
