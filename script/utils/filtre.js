@@ -47,7 +47,6 @@ function initFiltre(data) {
         let resultsAvecTag = [];
         if (nombreCharMin(inputUser)) {
             document.getElementById("liste_recette").innerHTML = "";
-            console.log(tableauFiltreActif);
             data.forEach(element => {
                 if (comparaisonString(element.name, inputUser)) {
                     resultsTitre.push(element);
@@ -62,7 +61,6 @@ function initFiltre(data) {
                         resultsAvecTag.push(el);
                     }
                 });
-
                 if (resultsAvecTag.length == 0) {
                     document.getElementById("recette_null").style.display = "flex";
                 } else {
@@ -82,7 +80,6 @@ function initFiltre(data) {
             tableauFiltreNoMaj.push(el.toLowerCase());
         });
         let flag = 0;
-        console.log(element);
         element.ingredients.forEach(i =>{
             if(tableauFiltreNoMaj.indexOf(i.ingredient.toLowerCase()) !== -1){
                 flag++;
@@ -123,7 +120,6 @@ function initFiltre(data) {
                 }
             });
             document.getElementById("filtre_secondaire_composants_ingredient").innerHTML = "";
-            console.log(result);
             displayFiltreIngredients(result);
             initEvenementFiltre();
         }
