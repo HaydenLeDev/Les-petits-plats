@@ -62,7 +62,7 @@ function initFiltre(data) {
                         resultsAvecTag.push(resultsTitre[i]);
                     }
                 }
-                
+
                 if (resultsAvecTag.length == 0) {
                     document.getElementById("recette_null").style.display = "flex";
                 } else {
@@ -137,7 +137,6 @@ function initFiltre(data) {
     function rechercheFiltreAppareil() {
         let inputUser = this.value;
         var result = [];
-        tableauAppareil = tableauAppareilsInit(tableauAppareil, data);
         document.getElementById("filtre_secondaire_composants_appareil").innerHTML = "";
         displayFiltreAppareil(tableauAppareil);
         initEvenementFiltre();
@@ -159,7 +158,6 @@ function initFiltre(data) {
     function rechercheFiltreUstensile() {
         let inputUser = this.value;
         var result = [];
-        tableauUstensiles = tableauAppareilsInit(tableauUstensiles, data);
         document.getElementById("filtre_secondaire_composants_ustensiles").innerHTML = "";
         displayFiltreUstensile(tableauUstensiles);
         initEvenementFiltre();
